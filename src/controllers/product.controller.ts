@@ -7,6 +7,8 @@ import { ProductResponse } from './types/product-response.type'
 @Tags("Product")
 @Route('/v1/product')
 export class ProductController extends Controller {
+    // Create product with image
+
     // Create new product
     @Post()
     @Example({
