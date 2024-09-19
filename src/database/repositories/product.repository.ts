@@ -50,8 +50,8 @@ export class ProductRepository {
     public async deleteProduct(id: string): Promise<IProduct> {
         try {
             const product = await ProductModel.findByIdAndUpdate(id, {deleteAt: new Date(), isDelete: true, ProductDeleteRequest: false }, { new: true })
-            console.log(product, "Repo")
-            return product as IProduct   // Expected: result alway IProduct
+            // Expected: result alway IProduct
+            return product!
         } catch (error) {
             throw error
         }
