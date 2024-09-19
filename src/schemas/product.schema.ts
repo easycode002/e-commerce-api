@@ -1,7 +1,8 @@
+import { IProduct } from "@/database/models/product.model";
 import { Schema } from "mongoose"
 
 // Define product schema
-const productSchema = new Schema({
+const productSchema = new Schema<IProduct>({
     name: { type: String, required: true },
     description: { type: String, required: true },
     category: { type: String, required: true },
