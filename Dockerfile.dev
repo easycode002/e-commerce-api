@@ -1,0 +1,22 @@
+FROM node:20-alpine3.19
+
+# WORKDIR /product-service
+WORKDIR /product-service
+
+# Copy package.json
+COPY package.json ./
+
+# Install dependencies
+RUN npm install && npm install -g nodemon
+
+# Copy other file
+COPY tsconfig.json ./
+COPY nodemon.json ./
+COPY src ./src
+COPY tsoa.json ./
+
+# Expose the application port
+EXPOSE 3000
+
+# Command to run the application
+CMD [ "npm","run","dev" ]

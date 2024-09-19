@@ -1,0 +1,7 @@
+build
+node_modules
+yarn.lock
+note.txt
+
+# ignore all file on config
+src/configs/*
