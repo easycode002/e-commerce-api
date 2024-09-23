@@ -6,10 +6,21 @@
     ],
     "spec": {
         "outputDirectory": "src/docs",
-        "specVersion": 3
+        "specVersion": 3,
+        
+        "securityDefinitions": { 
+            "apiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization"
+            }
+        }
     },
     "routes": {
         "routesDir": "src/routes/v1"
+    },
+    "multer": {
+        "dest": "uploads/"
     },
     "compilerOptions": {
         "baseUrl": "./",

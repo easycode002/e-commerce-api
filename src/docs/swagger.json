@@ -165,6 +165,26 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"IImage": {
+				"properties": {
+					"filename": {
+						"type": "string"
+					},
+					"path": {
+						"type": "string"
+					},
+					"mimetype": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"filename",
+					"path",
+					"mimetype"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ICategory": {
 				"properties": {
 					"name": {
@@ -245,7 +265,13 @@
 				"additionalProperties": false
 			}
 		},
-		"securitySchemes": {}
+		"securitySchemes": {
+			"apiKeyAuth": {
+				"type": "apiKey",
+				"in": "header",
+				"name": "Authorization"
+			}
+		}
 	},
 	"info": {
 		"title": "e-commerce",
@@ -455,6 +481,47 @@
 						}
 					}
 				]
+			}
+		},
+		"/v1/images/upload": {
+			"post": {
+				"operationId": "UploadImage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IImage"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Image"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"multipart/form-data": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"file": {
+										"type": "string",
+										"format": "binary"
+									}
+								},
+								"required": [
+									"file"
+								]
+							}
+						}
+					}
+				}
 			}
 		},
 		"/v1/category": {

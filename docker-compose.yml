@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  # Build container contain all resource
+  backend_sample:                             # Select service(Container) for will be run
+    container_name: product-service           # Container name
+    build:                                    # To build image
+      context: .                              # Take Dockerfile.dev from root project
+      dockerfile: Dockerfile.dev              # Laction of Dockerfile.dev
+    restart: always                           # Ensures that the container restarts automatically if it crashes or Every make change
+    ports:                                    # Maping port <host_port>:<port_service_inside_container>
+      - 3000:3001
+    env_file: ./src/configs/.env.development  # Specific envairoment will inject to container
+    environment:
+      - DOCKER_ENV=true                       # env_file = environment(Optional)
+    volumes:
+      - ./src:/product-service/src            # HOT RELOADING, ANY CHANGE IN SRC FOLDER OUR APP WILL RESTART
+      - app1-volume:/app/production           # New volume for `production` files
+      
+  # Build mongodb inside container
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    restart: always
+    ports:
+      - 2717:27017                            # Expose MongoDB default port
+    volumes:
+      - type: volume                          # Specify the volume type
+        source: mongo_data                    # Use the named volume
+        target: /data/db 
+
+volumes:
+  app1-volume:                                # Declaring a named volume
+  mongo_data:                                 # Volume for mongodb_data

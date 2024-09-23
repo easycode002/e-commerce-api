@@ -3,15 +3,6 @@ import { ProductCreateRequest } from "@/controllers/types/product-request.type"
 import ProductModel from "@/database/models/product.model"
 
 export class ProductRepository {
-    public async createProductWithImage(productCreateRequest: ProductCreateRequest): Promise<IProduct> {
-        try {
-            const product = await ProductModel.create(productCreateRequest);
-            return product;
-        } catch (error) {
-            throw error;
-        }
-    }
-
     // Create new product
     public async createProduct(productCreateRequest: ProductCreateRequest): Promise<IProduct> {
         try {

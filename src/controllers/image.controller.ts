@@ -1,32 +1,32 @@
-import { Controller, Post, Get, Delete, Route, Path, UploadedFile } from 'tsoa';
-import { ImageService } from '../services/imageService';
-import { Image } from '../types/image';
+import { Controller, Post, Route, Tags, UploadedFile } from "tsoa";
+import { IImage } from "../schemas/image.schema";
+import { ImageService } from "../services/image.service";
 
-@Route('images')
+// Set up storage for uploaded files@Tags("Image")
+@Tags("Image")
+@Route("v1/images")
 export class ImageController extends Controller {
-  private imageService: ImageService;
+    private imageService: ImageService;
 
-  constructor() {
-    super();
-    this.imageService = new ImageService();
-  }
+    constructor() {
+        super();
+        this.imageService = new ImageService();
+    }
 
-  @Post('upload')
-  public async uploadImage(
-    @UploadedFile() file: Express.Multer.File
-  ): Promise<{ id: string }> {
-    const imageId = await this.imageService.uploadImage(file.originalname, file.buffer);
-    return { id: imageId };
-  }
-
-  @Get('{id}')
-  public async getImage(@Path() id: string): Promise<Image | null> {
-    return this.imageService.getImage(id);
-  }
-
-  @Delete('{id}')
-  public async deleteImage(@Path() id: string): Promise<{ success: boolean }> {
-    const result = await this.imageService.deleteImage(id);
-    return { success: result };
-  }
+    @Post('upload')
+    public async uploadImage(@UploadedFile() file: Express.Multer.File): Promise<IImage> {
+        try {
+            console.log('Controller: Received file:', file);
+            if (!file) {
+                throw new Error('No file received in controller');
+            }
+            const result = await this.imageService.uploadImage(file);
+            console.log('Controller: Upload result:', result);
+            return result;
+        } catch (error) {
+            console.error('Error in controller uploadImage:', error);
+            throw error;
+        }
+    }
 }
+export default new ImageController();

@@ -20,3 +20,11 @@ EXPOSE 3000
 
 # Command to run the application
 CMD [ "npm","run","dev" ]
+
+# url store in mongodb, image store in s3/remote server
+# clude dinary
+# compose-docker for manage doocker container contain mongdb
+
+# ចាប់file to upload អោយបាន
+# យកទៅStore in server
+# https://dev.to/collegewap/how-to-save-images-to-mongodb-in-nodejs-dog
