@@ -79,8 +79,9 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "filename": {"dataType":"string","required":true},
-            "path": {"dataType":"string","required":true},
+            "originalname": {"dataType":"string","required":true},
             "mimetype": {"dataType":"string","required":true},
+            "url": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
