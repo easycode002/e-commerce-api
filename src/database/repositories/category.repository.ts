@@ -1,5 +1,5 @@
 import { CategoryCreateRequest, CategoryUpdateRequest } from "@/controllers/types/category-request.type";
-import CategoryModel, { ICategory } from "@/database/models/category.model";
+import CategoryModel, { ICategory } from "../models/category.model";
 
 export class CategoryRepository {
     // Create category
@@ -26,10 +26,7 @@ export class CategoryRepository {
     async updateCategory(id: string, categoryUpdateRequest: CategoryUpdateRequest): Promise<ICategory> {
         try {
             const category = await CategoryModel.findByIdAndUpdate(id, { ...categoryUpdateRequest, updateAt: new Date() }, { new: true });
-            if (!category) {
-                throw new Error(`Category ID:${id} not found`)
-            }
-            return category
+            return category!
         } catch (error) {
             throw error
         }

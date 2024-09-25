@@ -1,13 +1,16 @@
-import { Body, Controller, Delete, Get, Path, Post, Put, Route, Tags } from "tsoa";
+import { Body, Controller, Delete, Get, Middlewares, Path, Post, Put, Route, Tags } from "tsoa";
 import { CategoryResponse } from "./types/category-response.type";
 import { CategoryCreateRequest, CategoryUpdateRequest } from "./types/category-request.type";
 import CategoryService from "@/services/category.service";
+import validateRequest from "@/middlewares/validate-input";
+import categoryValidationSchema from "@/schemas/category";
 
 @Tags("Category")
 @Route("/v1/category")
 export class CategoryController extends Controller {
     // Create new category
     @Post()
+    @Middlewares(validateRequest(categoryValidationSchema))
     async createCategory(@Body() categoryCreateRequest: CategoryCreateRequest): Promise<CategoryResponse> {
         try {
             const category = await CategoryService.createCategory(categoryCreateRequest);

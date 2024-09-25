@@ -5,3 +5,4 @@ note.txt
 
 # ignore all file on config
 src/configs/*
+coverage

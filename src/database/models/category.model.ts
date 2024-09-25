@@ -1,4 +1,4 @@
-import categorySchema from "@/schemas/category.schema";
+import categorySchema from "../../schemas/category.schema";
 import mongoose from "mongoose";
 
 export interface ICategory {
