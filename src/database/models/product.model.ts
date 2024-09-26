@@ -1,5 +1,5 @@
-import productSchema from "@/schemas/product.schema";
-import {  model } from 'mongoose';
+import productSchema from "../../schemas/product.schema";
+import mongoose from 'mongoose';
 
 // Interface describe about product
 export interface IProduct {
@@ -18,5 +18,5 @@ export interface IProduct {
 }
 
 // Create productModel
-const ProductModel = model<IProduct>("product", productSchema);
+const ProductModel = mongoose.model<IProduct>("product", productSchema);
 export default ProductModel

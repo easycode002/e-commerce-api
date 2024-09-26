@@ -1,4 +1,4 @@
-import configs from "@/config";
+import configs from "./../config";
 import mongoose from "mongoose";
 
 async function connectToMongoDB() {

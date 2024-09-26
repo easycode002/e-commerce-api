@@ -1,9 +1,10 @@
 import { Body, Controller, Delete, Get, Middlewares, Path, Post, Put, Route, Tags } from "tsoa";
+// import { CategoryResponse } from "./types/category-response.type";
 import { CategoryResponse } from "./types/category-response.type";
 import { CategoryCreateRequest, CategoryUpdateRequest } from "./types/category-request.type";
-import CategoryService from "@/services/category.service";
-import validateRequest from "@/middlewares/validate-input";
-import categoryValidationSchema from "@/schemas/category";
+import CategoryService from "../services/category.service";
+import validateRequest from "../middlewares/validate-input";
+import categoryValidationSchema from "../schemas/category";
 
 @Tags("Category")
 @Route("/v1/category")

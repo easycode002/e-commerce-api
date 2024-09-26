@@ -1,4 +1,4 @@
-import { CategoryCreateRequest, CategoryUpdateRequest } from "@/controllers/types/category-request.type";
+import { CategoryCreateRequest, CategoryUpdateRequest } from "../../controllers/types/category-request.type";
 import CategoryModel, { ICategory } from "../models/category.model";
 
 export class CategoryRepository {

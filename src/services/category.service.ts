@@ -1,6 +1,6 @@
-import { CategoryCreateRequest, CategoryUpdateRequest } from "@/controllers/types/category-request.type";
-import { ICategory } from "@/database/models/category.model";
-import CategoryRepository from "@/database/repositories/category.repository";
+import { CategoryCreateRequest, CategoryUpdateRequest } from "../controllers/types/category-request.type";
+import { ICategory } from "../database/models/category.model";
+import CategoryRepository from "../database/repositories/category.repository";
 
 export class CategoryService {
     // Create new category

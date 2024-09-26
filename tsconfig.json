@@ -16,9 +16,11 @@
         "noUnusedParameters": true,
         "alwaysStrict": true,
         "pretty": true,
-        "baseUrl": "src",
+        "baseUrl": "./src",
         "paths": {
-          "@/*": ["*"]
+            "@/*": [
+                "*"
+            ]
         }
     },
     "include": [

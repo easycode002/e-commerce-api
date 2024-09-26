@@ -12,7 +12,13 @@ type Config = {
 function loadConfig(): Config {
     const env = process.env.NODE_ENV || 'development'; // If not assign, default is `NODE_END=production`
     const envPath = path.resolve(__dirname, `./configs/.env.${env}`)// Define path to load
-    dotenv.config({ path: envPath })
+
+    // Load environment variables only if the env file exists
+    if (env !== 'test') {
+        dotenv.config({ path: envPath });
+    } else {
+        console.log('Test environment detected. Skipping loading .env file.');
+    }
 
     // Define schema for environment variables
     const envVarsSchema = Joi.object({
@@ -28,9 +34,9 @@ function loadConfig(): Config {
     }
 
     return {
-        env:envVars.NODE_ENV,
-        port:envVars.PORT,
-        mongodbUrl:envVars.MONGODB_URL
+        env: envVars.NODE_ENV,
+        port: envVars.PORT,
+        mongodbUrl: envVars.MONGODB_URL
     }
 }
 

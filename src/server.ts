@@ -1,6 +1,6 @@
-import app from "./app";
-import configs from "./config";
-import connectToMongoDB from './database/connection'
+import app from "@/app";
+import configs from "@/config";
+import connectToMongoDB from '@/database/connection'
 
 async function run() {
     try {

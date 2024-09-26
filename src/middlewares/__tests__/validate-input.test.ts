@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import Joi from 'joi';
-import validateRequest from './validate-input'; // Adjust the path according to your structure
+import validateRequest from '../validate-input';
+import { InvalidInputError } from '../../utils/error';
+// import InvalidInputError  from '../global-error';
 
 describe('validateRequest Middleware', () => {
     let req: Partial<Request>;
@@ -15,7 +17,7 @@ describe('validateRequest Middleware', () => {
     beforeEach(() => {
         req = {};
         res = {
-            status: jest.fn().mockReturnThis(),
+            status: jest.fn(),
             json: jest.fn(),
         };
         next = jest.fn();
@@ -33,29 +35,31 @@ describe('validateRequest Middleware', () => {
         expect(next).not.toHaveBeenCalledWith(expect.any(Error));
     });
 
-    it('should return an error if name is missing', () => {
+    it('should return an InvalidInputError if name is missing', () => {
         req.body = {
             description: 'This is a test category',
         };
 
         validateRequest(schema)(req as Request, res as Response, next);
 
-        expect(next).toHaveBeenCalledWith(expect.any(Error));
+        expect(next).toHaveBeenCalledWith(expect.any(InvalidInputError));
         expect(next).toHaveBeenCalledWith(expect.objectContaining({
-            message: '"name" is required',
+            message: "Validation failed",
+            errors: expect.arrayContaining(['"name" is required']),
         }));
     });
 
-    it('should return an error if description is missing', () => {
+    it('should return an InvalidInputError if description is missing', () => {
         req.body = {
             name: 'Test Category',
         };
 
         validateRequest(schema)(req as Request, res as Response, next);
 
-        expect(next).toHaveBeenCalledWith(expect.any(Error));
+        expect(next).toHaveBeenCalledWith(expect.any(InvalidInputError));
         expect(next).toHaveBeenCalledWith(expect.objectContaining({
-            message: '"description" is required',
+            message: "Validation failed",
+            errors: expect.arrayContaining(['"description" is required']),
         }));
     });
 
@@ -64,12 +68,10 @@ describe('validateRequest Middleware', () => {
 
         validateRequest(schema)(req as Request, res as Response, next);
 
-        expect(next).toHaveBeenCalledWith(expect.any(Error));
+        expect(next).toHaveBeenCalledWith(expect.any(InvalidInputError));
         expect(next).toHaveBeenCalledWith(expect.objectContaining({
-            message: expect.stringContaining('"name" is required'),
-        }));
-        expect(next).toHaveBeenCalledWith(expect.objectContaining({
-            message: expect.stringContaining('"description" is required'),
+            message: "Validation failed",
+            errors: expect.arrayContaining(['"name" is required', '"description" is required']),
         }));
     });
 });

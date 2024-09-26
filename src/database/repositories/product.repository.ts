@@ -1,6 +1,6 @@
 import { IProduct } from "../models/product.model"
-import { ProductCreateRequest } from "@/controllers/types/product-request.type"
-import ProductModel from "@/database/models/product.model"
+import { ProductCreateRequest } from "../../controllers/types/product-request.type"
+import ProductModel from "../models/product.model"
 
 export class ProductRepository {
     // Create new product

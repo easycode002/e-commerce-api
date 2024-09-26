@@ -1,8 +1,7 @@
-import ProductService from '@/services/product.service'
+import ProductService from '../services/product.service'
 import { Controller, Route, Post, Tags, Body, Get, Path, Example, Put, Delete } from 'tsoa'
 import { ProdductUpdateRequest, ProductCreateRequest } from '../controllers/types/product-request.type'
-import { ProductResponse } from './types/product-response.type'
-
+import { ProductResponse } from '../controllers/types/product-response.type'
 
 @Tags("Product")
 @Route('/v1/product')

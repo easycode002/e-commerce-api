@@ -1,6 +1,6 @@
 import express from 'express'
 import swaggerUi from 'swagger-ui-express'
-import { RegisterRoutes } from './routes/v1/routes'
+// import { RegisterRoutes } from './routes/v1/routes'
 import fs from 'fs'
 import path from 'path'
 
@@ -20,7 +20,7 @@ app.use(express.json()) // Help to get the join from request body
 // ========================
 // Global API v1
 // ========================
-RegisterRoutes(app)
+// RegisterRoutes(app)
 
 // ========================
 // API Documentations

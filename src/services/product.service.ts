@@ -1,6 +1,6 @@
-import { ProductCreateRequest } from "@/controllers/types/product-request.type"
-import { IProduct } from "@/database/models/product.model"
-import ProductRepository from "@/database/repositories/product.repository"
+import { ProductCreateRequest } from "../controllers/types/product-request.type"
+import { IProduct } from "../database/models/product.model"
+import ProductRepository from "../database/repositories/product.repository"
 export class ProductService {
     // Create new product
     public async createProduct(productCreateRequest: ProductCreateRequest): Promise<IProduct> {

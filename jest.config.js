@@ -11,5 +11,7 @@ module.exports = {
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
   moduleFileExtensions: ['ts', 'js'],
   coverageDirectory: 'coverage',
-  collectCoverageFrom: ['src/controllers/**/*.ts', 'src/services/**/*.ts','src/database/**/*.ts'],
+  collectCoverageFrom: ['src/database/repositories/*.ts','src/middlewares/**/*.ts'],
 };
+
+// 'src/controllers/**/*.ts', 'src/services/**/*.ts',
