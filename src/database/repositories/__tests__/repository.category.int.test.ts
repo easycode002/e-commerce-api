@@ -10,6 +10,7 @@ beforeAll(async () => {
   await mongoose.connect(config.mongodbUrl);
 });
 
+
 afterAll(async () => {
   await mongoose.connection.close();
 });
