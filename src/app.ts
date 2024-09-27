@@ -27,5 +27,9 @@ app.use(express.json()) // Help to get the join from request body
 // ========================
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
+// import { Router } from "express";
+// import ProductController  from './controllers/product.controller';
+// const router = Router();
+// router.post("/", uploadImage.single("image"), ProductController.createProduct);
 
 export default app;

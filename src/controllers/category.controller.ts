@@ -5,6 +5,7 @@ import { CategoryCreateRequest, CategoryUpdateRequest } from "./types/category-r
 import CategoryService from "../services/category.service";
 import validateRequest from "../middlewares/validate-input";
 import categoryValidationSchema from "../schemas/category";
+import { HTTP_STATUS_CODE } from "@/utils/constants/status-code";
 
 @Tags("Category")
 @Route("/v1/category")
@@ -44,10 +45,14 @@ export class CategoryController extends Controller {
         try {
             const category = await CategoryService.updateCategory(id, categoryUpdateRequest)
             if (!category) {
-                throw new Error(`f`)
+                this.setStatus(HTTP_STATUS_CODE.NOT_FOUND);
+                return {
+                    message: "Category not found.",
+                    data: null!
+                };
             }
             return {
-                message: "ff",
+                message: "Category updated successfully!",
                 data: category
             }
         } catch (error) {
