@@ -2,7 +2,7 @@ import productSchema from "../../schemas/product.schema";
 import mongoose from 'mongoose';
 
 // Interface describe about product
-export interface IProduct {
+export interface IProduct extends Document {
     name: string;
     description: string;
     category: string;
